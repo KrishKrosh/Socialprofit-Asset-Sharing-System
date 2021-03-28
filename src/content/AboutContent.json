@@ -1,15 +1,15 @@
 {
-  "title": "Light, Fast & Responsive",
-  "text": "This template is ready to use, so you don't need to change anything at a component level, unless you want to customize the default styling.",
+  "title": "Secure, Simple, and Easy",
+  "text": "This site is only available to trusted Social Profits in the community, and your contact information will be shown to others. Log on and get started, but don't forget to give back as well.",
   "section": [
     {
-      "title": "Why Antd?",
-      "content": "Ant Design is a React UI library that has a lot of easy-to-use components for building elegant UI.",
+      "title": "List Items",
+      "content": "Click the '+' to add an item. This can be as broad as 'Production Equipment' or as specific as 'Label Printer'. People will be able to book your item through a form, or contact you directly.",
       "icon": "notes.svg"
     },
     {
-      "title": "Why styled-components?",
-      "content": "Styled Components gives you total control over your components.",
+      "title": "Borrow Items",
+      "content": "Found an item that you need? Click on it and book the item for a time through the provided form. Need to talk about more? Contact them directly through the given information.",
       "icon": "notes.svg"
     }
   ]

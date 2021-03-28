@@ -24,21 +24,21 @@ const Home = () => {
         title={IntroContent.title}
         content={IntroContent.text}
         button={IntroContent.button}
-        icon="developer.svg"
+        icon="coworking.svg"
         id="intro"
       />
       <MiddleBlock
         title={MiddleBlockContent.title}
         content={MiddleBlockContent.text}
         button={MiddleBlockContent.button}
+        id="about"
       />
       <ContentBlock
         type="left"
         title={AboutContent.title}
         content={AboutContent.text}
         section={AboutContent.section}
-        icon="graphs.svg"
-        id="about"
+        icon="FAQ_outline I.svg"
       />
       <ContentBlock
         type="right"
@@ -55,11 +55,11 @@ const Home = () => {
         icon="waving.svg"
         id="product"
       />
-      <ContactFrom
+      {/* <ContactFrom
         title={ContactContent.title}
         content={ContactContent.text}
         id="contact"
-      />
+      /> */}
     </Container>
   );
 };

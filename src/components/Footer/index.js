@@ -40,11 +40,13 @@ const Footer = ({ t }) => {
                 <S.Large to="/">{t('Tell us everything')}</S.Large>
                 <S.Para>
                   {t(
-                    `Do you have any question regarding the project? Feel free to reach out.`
+                    `Do you have any question regarding the platform? Feel free to reach out.`
                   )}
                 </S.Para>
-                <a href="mailto:l.qqbadze@gmail.com">
-                  <S.Chat>{t(`Let's Chat`)}</S.Chat>
+                <a href="mailto:l.qqbadze@gmail.com">Email: 
+                </a>
+                <br></br>
+                <a href="tel">Phone: 780-xxx-xxxx
                 </a>
               </Col>
               <Col lg={8} md={8} sm={12} xs={24}>
@@ -66,7 +68,7 @@ const Footer = ({ t }) => {
                 </S.Large>
               </Col>
             </Row>
-            <Row type="flex" justify="space-between">
+            {/* <Row type="flex" justify="space-between">
               <Col lg={10} md={10} sm={12} xs={24}>
                 <S.Empty />
                 <S.Language>{t('ADDRESS')}</S.Language>
@@ -102,10 +104,10 @@ const Footer = ({ t }) => {
                   </S.LangSelect>
                 </S.Select>
               </Col>
-            </Row>
+            </Row> */}
           </Container>
         </S.Footer>
-        <S.Extra>
+        {/* <S.Extra>
           <Container border="true">
             <Row
               type="flex"
@@ -142,7 +144,7 @@ const Footer = ({ t }) => {
               </S.FooterContainer>
             </Row>
           </Container>
-        </S.Extra>
+        </S.Extra> */}
       </Fade>
     </Fragment>
   );
