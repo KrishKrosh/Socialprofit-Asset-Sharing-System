@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Form, Button, Card, Alert, Container } from "react-bootstrap";
+import { Form, Button, Card, Alert, Container, Col } from "react-bootstrap";
 import { useAuth } from "../../contexts/AuthContext";
 import { db } from "../../firebase";
 import { Link, useHistory } from "react-router-dom";
@@ -7,10 +7,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Signup() {
   const emailRef = useRef();
+  const phoneRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
   const nonprofitNumberRef = useRef();
-  const nameRef = useRef();
+  const orgNameRef = useRef();
+  const addressRef = useRef();
+  const cityRef = useRef();
+  const postalCodeRef = useRef();
+  const contNameRef = useRef();
   const { signup } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -33,13 +38,19 @@ export default function Signup() {
 
     await db
       .collection("users")
-      .add({
-        name: nameRef.current.value,
+      .doc(emailRef.current.value)
+      .set({
+        orgName: orgNameRef.current.value,
         email: emailRef.current.value,
         number: nonprofitNumberRef.current.value,
+        address: addressRef.current.value,
+        city: cityRef.current.value,
+        postalCode: postalCodeRef.current.value,
+        contName: contNameRef.current.value,
+        phone: phoneRef.current.value,
       })
       .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
+        console.log("Document written with ID: ");
       })
       .catch((error) => {
         console.error("Error adding document: ", error);
@@ -54,24 +65,59 @@ export default function Signup() {
       className="d-flex align-items-center justify-content-center"
       style={{ minHeight: "100vh" }}
     >
-      <div className="w-100" style={{ maxWidth: "400px" }}>
+      <div
+        className="w-100"
+        style={{ maxWidth: "700px", marginTop: "30px", marginBottom: "30px" }}
+      >
         <Card>
           <Card.Body>
             <h2 className="text-center mb-4">Sign Up</h2>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
-              <Form.Group id="name">
-                <Form.Label>Social Profit Name</Form.Label>
-                <Form.Control type="name" ref={nameRef} required />
+              <Form.Group id="orgName">
+                <Form.Label>Organization Name</Form.Label>
+                <Form.Control type="name" ref={orgNameRef} required />
               </Form.Group>
+              <Form.Group id="nonprofitNumber">
+                <Form.Label>Charitable Organization Number</Form.Label>
+                <Form.Control ref={nonprofitNumberRef} required />
+              </Form.Group>
+              <Form.Group id="address">
+                <Form.Label>Street Address</Form.Label>
+                <Form.Control ref={addressRef} required />
+              </Form.Group>
+              <Form.Row>
+                <Col>
+                  <Form.Group id="city">
+                    <Form.Label>City</Form.Label>
+                    <Form.Control ref={cityRef} required />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group id="postalCode">
+                    <Form.Label>Postal Code</Form.Label>
+                    <Form.Control ref={postalCodeRef} required />
+                  </Form.Group>
+                </Col>
+              </Form.Row>
               <Form.Group id="email">
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="email" ref={emailRef} required />
               </Form.Group>
-              <Form.Group id="nonprofitNumber">
-                <Form.Label>Social Profit Number</Form.Label>
-                <Form.Control ref={nonprofitNumberRef} required />
-              </Form.Group>
+              <Form.Row>
+                <Col>
+                  <Form.Group id="contName">
+                    <Form.Label>Contact Name</Form.Label>
+                    <Form.Control ref={contNameRef} required />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group id="phone">
+                    <Form.Label>Phone Number</Form.Label>
+                    <Form.Control type="phone" ref={phoneRef} required />
+                  </Form.Group>
+                </Col>
+              </Form.Row>
               <Form.Group id="password">
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" ref={passwordRef} required />

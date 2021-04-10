@@ -1,10 +1,10 @@
 {
   "title": "Secure, Simple, and Easy",
-  "text": "This site is only available to trusted Social Profits in the community, and your contact information will be shown to others. Log on and get started, but don't forget to give back as well.",
+  "text": "The SASS is only available to Social-profits within the RMWB.  Once you’ve created an account, you’ll be able to log in, add your assets and browse for items you may need for an upcoming event.  All organizations utilizing the SASS will be required to provide a charity registration  number which will be verified.  Contact information will be shared with the requesting agency so that parties can connect directly and establish pick up, returns and any other details about the asset.",
   "section": [
     {
       "title": "List Items",
-      "content": "Click the '+' to add an item. This can be as broad as 'Production Equipment' or as specific as 'Label Printer'. People will be able to book your item through a form, or contact you directly.",
+      "content": "Click the 'List Asset' button to add an item. This can be as broad as 'Production Equipment' or as specific as 'Label Printer'. People will be able to book your item through a form, or contact you directly.",
       "icon": "notes.svg"
     },
     {

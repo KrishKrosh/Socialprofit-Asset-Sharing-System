@@ -1,67 +1,68 @@
-import React from 'react';
-import loadable from '@loadable/component';
+import React from "react";
+import loadable from "@loadable/component";
 
-import IntroContent from '../../content/IntroContent.json';
-import MiddleBlockContent from '../../content/MiddleBlockContent.json';
-import AboutContent from '../../content/AboutContent.json';
-import MissionContent from '../../content/MissionContent.json';
-import ProductContent from '../../content/ProductContent.json';
-import ContactContent from '../../content/ContactContent.json';
+import IntroContent from "../../content/IntroContent.json";
+import MiddleBlockContent from "../../content/MiddleBlockContent.json";
+import AboutContent from "../../content/AboutContent.json";
+import MissionContent from "../../content/MissionContent.json";
+import ProductContent from "../../content/ProductContent.json";
+import { useAuth } from "../../contexts/AuthContext";
+import AllAssets from "../LoggedIn/allAssets";
 
-const ContactFrom = loadable(() => import('../../components/ContactForm'));
-const ContentBlock = loadable(() => import('../../components/ContentBlock'));
-const MiddleBlock = loadable(() => import('../../components/MiddleBlock'));
-const Container = loadable(() => import('../../common/Container'));
-const ScrollToTop = loadable(() => import('../../common/ScrollToTop'));
+const ContentBlock = loadable(() => import("../../components/ContentBlock"));
+const MiddleBlock = loadable(() => import("../../components/MiddleBlock"));
+const Container = loadable(() => import("../../common/Container"));
+const ScrollToTop = loadable(() => import("../../common/ScrollToTop"));
 
 const Home = () => {
-  return (
-    <Container>
-      <ScrollToTop />
-      <ContentBlock
-        type="right"
-        first="true"
-        title={IntroContent.title}
-        content={IntroContent.text}
-        button={IntroContent.button}
-        icon="coworking.svg"
-        id="intro"
-      />
-      <MiddleBlock
-        title={MiddleBlockContent.title}
-        content={MiddleBlockContent.text}
-        button={MiddleBlockContent.button}
-        id="about"
-      />
-      <ContentBlock
-        type="left"
-        title={AboutContent.title}
-        content={AboutContent.text}
-        section={AboutContent.section}
-        icon="FAQ_outline I.svg"
-      />
-      <ContentBlock
-        type="right"
-        title={MissionContent.title}
-        content={MissionContent.text}
-        icon="product-launch.svg"
-        id="mission"
-      />
+  const { currentUser } = useAuth();
 
-      <ContentBlock
-        type="left"
-        title={ProductContent.title}
-        content={ProductContent.text}
-        icon="waving.svg"
-        id="product"
-      />
-      {/* <ContactFrom
-        title={ContactContent.title}
-        content={ContactContent.text}
-        id="contact"
-      /> */}
-    </Container>
-  );
+  if (currentUser) {
+    return <AllAssets />;
+  } else {
+    return (
+      <Container>
+        <ScrollToTop />
+        <ContentBlock
+          type="right"
+          first="true"
+          title={IntroContent.title}
+          content={IntroContent.text}
+          button={IntroContent.button}
+          icon="coworking.svg"
+          id="intro"
+        />
+        <MiddleBlock
+          title={MiddleBlockContent.title}
+          content={MiddleBlockContent.text}
+          button={MiddleBlockContent.button}
+          id="about"
+        />
+        <ContentBlock
+          type="left"
+          title={AboutContent.title}
+          content={AboutContent.text}
+          section={AboutContent.section}
+          icon="graphic.svg"
+        />
+        <ContentBlock
+          type="right"
+          title={MissionContent.title}
+          content={MissionContent.text}
+          icon="product-launch.svg"
+          id="mission"
+        />
+
+        <ContentBlock
+          type="left"
+          title={ProductContent.title}
+          content={ProductContent.text}
+          icon="waving.svg"
+          id="product"
+        />
+      </Container>
+    );
+  }
 };
 
 export default Home;

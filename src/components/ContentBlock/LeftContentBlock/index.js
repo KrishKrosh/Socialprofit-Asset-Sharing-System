@@ -1,12 +1,12 @@
-import React from 'react';
-import { Row, Col } from 'antd';
-import { withTranslation } from 'react-i18next';
-import { Slide } from 'react-reveal';
-import loadable from '@loadable/component';
+import React from "react";
+import { Row, Col } from "antd";
+import { withTranslation } from "react-i18next";
+import { Slide } from "react-reveal";
+import loadable from "@loadable/component";
 
-import * as S from './styles';
+import * as S from "./styles";
 
-const SvgIcon = loadable(() => import('../../../common/SvgIcon'));
+const SvgIcon = loadable(() => import("../../../common/SvgIcon"));
 
 const LeftContentBlock = ({ icon, title, content, section, t, id }) => {
   return (
@@ -25,7 +25,7 @@ const LeftContentBlock = ({ icon, title, content, section, t, id }) => {
               <S.ServiceWrapper>
                 <Row type="flex" justify="space-between">
                   {section &&
-                    typeof section === 'object' &&
+                    typeof section === "object" &&
                     section.map((item, id) => {
                       return (
                         <Col key={id} span={11}>

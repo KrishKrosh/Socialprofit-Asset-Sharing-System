@@ -1,19 +1,20 @@
-import React from 'react';
-import { Row, Col } from 'antd';
-import { withTranslation } from 'react-i18next';
-import { Slide } from 'react-reveal';
-import loadable from '@loadable/component';
+import React from "react";
+import { Row, Col } from "antd";
+import { withTranslation } from "react-i18next";
+import { Slide } from "react-reveal";
+import loadable from "@loadable/component";
+import { Link } from "react-router-dom";
 
-import * as S from './styles';
+import * as S from "./styles";
 
-const SvgIcon = loadable(() => import('../../../common/SvgIcon'));
-const Button = loadable(() => import('../../../common/Button'));
+const SvgIcon = loadable(() => import("../../../common/SvgIcon"));
+const Button = loadable(() => import("../../../common/Button"));
 
 const RightBlock = ({ title, content, button, icon, t, id }) => {
   const scrollTo = (id) => {
     const element = document.getElementById(id);
     element.scrollIntoView({
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
   return (
@@ -24,22 +25,22 @@ const RightBlock = ({ title, content, button, icon, t, id }) => {
             <S.ContentWrapper>
               <h6>{t(title)}</h6>
               <S.Content>{t(content)}</S.Content>
-              <S.ButtonWrapper>
-                {button &&
-                  typeof button === 'object' &&
-                  button.map((item, id) => {
-                    return (
-                      <Button
-                        key={id}
-                        color={item.color}
-                        width="true"
-                        onClick={() => scrollTo('about')}
-                      >
-                        {t(item.title)}
-                      </Button>
-                    );
-                  })}
-              </S.ButtonWrapper>
+              {button ? (
+                <S.ButtonWrapper>
+                  <Link to="/signup" style={{ width: "20vw" }}>
+                    <Button width="300px">Sign Up</Button>
+                  </Link>
+                  <Button
+                    color="#fff"
+                    width="true"
+                    onClick={() => scrollTo("about")}
+                  >
+                    Learn More
+                  </Button>
+                </S.ButtonWrapper>
+              ) : (
+                ""
+              )}
             </S.ContentWrapper>
           </Slide>
         </Col>
