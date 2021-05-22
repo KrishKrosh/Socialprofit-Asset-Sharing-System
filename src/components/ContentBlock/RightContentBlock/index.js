@@ -10,7 +10,7 @@ import * as S from "./styles";
 const SvgIcon = loadable(() => import("../../../common/SvgIcon"));
 const Button = loadable(() => import("../../../common/Button"));
 
-const RightBlock = ({ title, content, button, icon, t, id }) => {
+const RightBlock = ({ title, content, button, icon, t, id, custom }) => {
   const scrollTo = (id) => {
     const element = document.getElementById(id);
     element.scrollIntoView({
@@ -46,7 +46,11 @@ const RightBlock = ({ title, content, button, icon, t, id }) => {
         </Col>
         <Col lg={11} md={11} sm={12} xs={24}>
           <Slide right>
-            <SvgIcon src={icon} className="about-block-image" />
+            {custom ? (
+              <img src="/img/svg/1.svg" style={{ width: "220%" }}></img>
+            ) : (
+              <SvgIcon src={icon} className="about-block-image" />
+            )}
           </Slide>
         </Col>
       </Row>

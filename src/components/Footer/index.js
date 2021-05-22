@@ -43,9 +43,9 @@ const Footer = ({ t }) => {
                     `Do you have any question regarding the platform? Feel free to reach out.`
                   )}
                 </S.Para>
-                <a href="mailto:l.qqbadze@gmail.com">Email:</a>
+                {/* <a href="mailto:l.qqbadze@gmail.com">Email:</a>
                 <br></br>
-                <a href="tel">Phone: 780-xxx-xxxx</a>
+                <a href="tel">Phone: 780-xxx-xxxx</a> */}
               </Col>
               <Col lg={8} md={8} sm={12} xs={24}>
                 <S.Title>{t("Policy")}</S.Title>

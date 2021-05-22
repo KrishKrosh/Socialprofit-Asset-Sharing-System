@@ -13,6 +13,7 @@ import { AuthProvider } from "../contexts/AuthContext";
 import GlobalStyles from "../globalStyles";
 import AddAsset from "../pages/LoggedIn/addAsset";
 import AssetInfo from "../pages/LoggedIn/assetInfo";
+import MyAssets from "../pages/LoggedIn/myAssets";
 
 const DIYRouter = () => {
   return (
@@ -28,6 +29,16 @@ const DIYRouter = () => {
                 <Fragment>
                   <Header />
                   <Home />
+                </Fragment>
+              )}
+            />
+            <Route
+              exact
+              path="/myassets"
+              render={() => (
+                <Fragment>
+                  <Header />
+                  <MyAssets />
                 </Fragment>
               )}
             />

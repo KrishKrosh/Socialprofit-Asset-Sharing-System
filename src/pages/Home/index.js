@@ -29,8 +29,8 @@ const Home = () => {
           title={IntroContent.title}
           content={IntroContent.text}
           button={IntroContent.button}
-          icon="coworking.svg"
           id="intro"
+          custom="true"
         />
         <MiddleBlock
           title={MiddleBlockContent.title}
@@ -43,7 +43,7 @@ const Home = () => {
           title={AboutContent.title}
           content={AboutContent.text}
           section={AboutContent.section}
-          icon="graphic.svg"
+          icon="coworking.svg"
         />
         <ContentBlock
           type="right"

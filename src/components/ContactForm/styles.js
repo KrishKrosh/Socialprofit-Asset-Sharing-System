@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 export const ContactContainer = styled.div`
   padding: 0 0 4 rem;
+  margin-bottom: 25px;
 `;
 
 export const Contact = styled.section`
   position: relative;
   width: 100%;
-  max-width: 1280px;
 `;
 
 export const IconContainer = styled.div`

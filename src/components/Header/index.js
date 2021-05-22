@@ -49,6 +49,11 @@ const Header = ({ t }) => {
             </S.CustomNavLinkSmall>
             <S.CustomNavLinkSmall>
               <S.Span>
+                <Link to="/myassets">{t("My Assets")}</Link>
+              </S.Span>
+            </S.CustomNavLinkSmall>
+            <S.CustomNavLinkSmall>
+              <S.Span>
                 <Link to="/">{t("All Assets")}</Link>
               </S.Span>
             </S.CustomNavLinkSmall>
@@ -91,7 +96,7 @@ const Header = ({ t }) => {
   };
 
   return (
-    <S.Header>
+    <S.Header style={{ maxHeight: "120px" }}>
       <S.Container>
         <Row type="flex" justify="space-between" gutter={20}>
           <S.LogoContainer to="/" aria-label="homepage">

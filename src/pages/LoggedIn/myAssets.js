@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import loadable from "@loadable/component";
 import Card from "react-bootstrap/Card";
-import { Container, Col, OverlayTrigger } from "react-bootstrap";
+import { Container, Col } from "react-bootstrap";
 import { db } from "../../firebase";
 import { Link } from "react-router-dom";
-import "./assets.css";
+import { useAuth } from "../../contexts/AuthContext";
 
 const Input = loadable(() => import("../../common/Input"));
 
-const AllAssets = () => {
+const MyAssets = () => {
   const [assetList, setAssetList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [values, setValues] = useState("");
+  const [ownerEmail, setOwnerEmail] = useState("");
+  const { currentUser } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,6 +21,18 @@ const AllAssets = () => {
         const querySnapshot = await db.collectionGroup("assets").get();
 
         setAssetList(querySnapshot.docs.map((doc) => doc.data()));
+
+        await db
+          .collection("users")
+          .where("email", "==", currentUser.email)
+          .get()
+          .then((querySnapshot) => {
+            if (!querySnapshot.empty) {
+              setOwnerEmail(querySnapshot.docs[0].data());
+              console.log(ownerEmail);
+            }
+          });
+
         setLoading(false);
       } catch (err) {
         console.error(err);
@@ -46,14 +60,11 @@ const AllAssets = () => {
     return (
       <Col>
         <Link to={`/asset/${assetName} ,${owner}`}>
-          <Card
-            style={{ margin: "20px", cursor: "pointer" }}
-            className="h-100 banana"
-          >
+          <Card style={{ margin: "20px", cursor: "pointer" }} className="h-100">
             <Card.Body>
               <Card.Title>{assetName}</Card.Title>
               <Card.Text style={{ fontSize: "1rem" }} maxLength="12">
-                <strong>Estimated Value: ${assetValue}</strong> <br />
+                <strong>Estimated Value: </strong> <br />
                 {assetDescription.substring(0, 300)} . . .
               </Card.Text>
             </Card.Body>
@@ -98,21 +109,27 @@ const AllAssets = () => {
                   />
                 );
               })
-          : assetList.map(function (doc) {
-              return (
-                <AssetCard
-                  assetName={doc.name}
-                  assetValue={doc.value}
-                  assetLocation={doc.location}
-                  assetDescription={doc.description}
-                  owner={doc.owner}
-                  key={doc.name}
-                />
-              );
-            })}
+          : assetList
+              .filter(
+                (doc) =>
+                  doc.owner.toLowerCase().trim() ===
+                  ownerEmail.orgName.toLowerCase().trim()
+              )
+              .map(function (doc) {
+                return (
+                  <AssetCard
+                    assetName={doc.name}
+                    assetValue={doc.value}
+                    assetLocation={doc.location}
+                    assetDescription={doc.description}
+                    owner={doc.owner}
+                    key={doc.name}
+                  />
+                );
+              })}
       </Container>
     );
   }
 };
 
-export default AllAssets;
+export default MyAssets;

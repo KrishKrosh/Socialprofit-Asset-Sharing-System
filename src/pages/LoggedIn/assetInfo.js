@@ -3,14 +3,19 @@ import loadable from "@loadable/component";
 import { Link, useHistory } from "react-router-dom";
 import { BrowserRouter as Router, useRouteMatch } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
-import { Container } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
+
 import { db } from "../../firebase";
+
+const nodemailer = require("nodemailer");
 const AssetBlock = loadable(() => import("../../components/AssetBlock"));
+const ContactFrom = loadable(() => import("../../components/ContactForm"));
 
 const AssetInfo = () => {
   const match = useRouteMatch("/asset/:assetName,:owner");
   const [asset, setAsset] = useState({});
   const [owner, setOwner] = useState({});
+  const [edit, setEdit] = useState(false);
   const [loading, setLoading] = useState(true);
   const { currentUser } = useAuth();
   const history = useHistory();
@@ -45,6 +50,10 @@ const AssetInfo = () => {
     fetchData();
   }, []);
 
+  const editListing = () => {
+    setEdit(true);
+  };
+
   const deleteListing = async () => {
     try {
       console.log("trying to delete");
@@ -61,25 +70,64 @@ const AssetInfo = () => {
     console.log("deleted");
   };
 
+  const book = () => {
+    let transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.REACT_APP_USER || "abc@gmail.com", // TODO: your gmail account
+        pass: process.env.REACT_APP_PASSWORD || "1234", // TODO: your gmail password
+      },
+    });
+
+    // Step 2
+    let mailOptions = {
+      from: "sunecompany@gmail.com", // TODO: email sender
+      to: "krish.life21@gmail.com", // TODO: email receiver
+      subject: "Nodemailer - Test",
+      text: "Wooohooo it works!!",
+    };
+
+    // Step 3
+    transporter.sendMail(mailOptions, (err, data) => {
+      if (err) {
+        return console.log("Error occurs");
+      }
+      return console.log("Email sent!!!");
+    });
+  };
+
   if (loading) {
     return <Container style={{ minHeight: "80vh" }}></Container>;
   } else {
     if (currentUser.email === owner.email) {
-      return (
-        <Container style={{ minHeight: "80vh" }}>
-          <AssetBlock
-            title={asset.name}
-            content={asset.description}
-            owner={match.params.owner.trim()}
+      if (!edit) {
+        return (
+          <Container style={{ minHeight: "80vh" }}>
+            <AssetBlock
+              title={asset.name}
+              content={asset.description}
+              owner={match.params.owner.trim()}
+              value={asset.value}
+              location={asset.location}
+              phone={owner.phone}
+              email={owner.email}
+              button={deleteListing}
+              button2={editListing}
+              id="info"
+            />
+          </Container>
+        );
+      } else {
+        return (
+          <ContactFrom
+            edit={true}
+            asset={asset.name}
             value={asset.value}
             location={asset.location}
-            phone={owner.phone}
-            email={owner.email}
-            button={deleteListing}
-            id="info"
+            description={asset.description}
           />
-        </Container>
-      );
+        );
+      }
     } else {
       return (
         <Container style={{ minHeight: "80vh" }}>

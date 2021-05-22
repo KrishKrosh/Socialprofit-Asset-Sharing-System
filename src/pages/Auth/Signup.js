@@ -19,6 +19,7 @@ export default function Signup() {
   const { signup } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [accept, setAccept] = useState(false);
   const history = useHistory();
 
   async function handleSubmit(e) {
@@ -26,6 +27,8 @@ export default function Signup() {
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
+    } else if (accept === false) {
+      return setError("Please accept our Terms and Conditions");
     }
 
     try {
@@ -129,6 +132,19 @@ export default function Signup() {
                   ref={passwordConfirmRef}
                   required
                 />
+              </Form.Group>
+              <Form.Group controlId="formBasicCheckbox">
+                <Form.Check type="checkbox">
+                  <Form.Check.Input
+                    onChange={() => {
+                      setAccept(!accept);
+                    }}
+                  />
+                  <Form.Check.Label>
+                    By checking this box, you declare that you have read and
+                    agreed to our <Link to="/terms">Terms and Conditions</Link>
+                  </Form.Check.Label>
+                </Form.Check>
               </Form.Group>
               <Button
                 style={{ backgroundColor: "#2e186a", border: "none" }}

@@ -4,8 +4,24 @@ import axios from "axios";
 import { db } from "../../firebase";
 import { useAuth } from "../../contexts/AuthContext";
 
-const useForm = (validate) => {
-  const [values, setValues] = useState({});
+const useForm = (
+  validate,
+  edit,
+  asset,
+  setDefaultAsset,
+  value,
+  setDefaultValue,
+  location,
+  setDefaultLocation,
+  description,
+  setDefaultDescription
+) => {
+  const [values, setValues] = useState({
+    asset: asset,
+    value: value,
+    location: location,
+    description: description,
+  });
   const [errors, setErrors] = useState({});
   const [shouldSubmit, setShouldSubmit] = useState(false);
   const { currentUser } = useAuth();
@@ -42,6 +58,9 @@ const useForm = (validate) => {
             description: values.description,
             owner: orgName,
           });
+          if (edit) {
+            user.collection("assets").doc(asset).delete();
+          }
         })
         .then(() => {
           setShouldSubmit(true);
@@ -50,6 +69,7 @@ const useForm = (validate) => {
   };
 
   useEffect(() => {
+    console.log(values);
     if (Object.keys(errors).length === 0 && shouldSubmit) {
       setValues("");
       openNotificationWithIcon("success");
@@ -58,6 +78,10 @@ const useForm = (validate) => {
 
   const handleChange = (event) => {
     event.persist();
+    setDefaultAsset("");
+    setDefaultDescription("");
+    setDefaultLocation("");
+    setDefaultValue("");
     setValues((values) => ({
       ...values,
       [event.target.name]: event.target.value,

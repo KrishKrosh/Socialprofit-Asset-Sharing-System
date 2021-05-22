@@ -8,13 +8,17 @@ import * as S from "./styles";
 
 const SvgIcon = loadable(() => import("../../../common/SvgIcon"));
 
-const LeftContentBlock = ({ icon, title, content, section, t, id }) => {
+const LeftContentBlock = ({ icon, title, content, section, t, id, custom }) => {
   return (
     <S.LeftContentBlock>
       <Row type="flex" justify="space-between" align="middle" id={id}>
         <Col lg={11} md={11} sm={12} xs={24}>
           <Slide left>
-            <SvgIcon src={icon} className="about-block-image" />
+            {custom ? (
+              <img src="/img/svg/1.svg" style={{ width: "205%" }}></img>
+            ) : (
+              <SvgIcon src={icon} className="about-block-image" />
+            )}
           </Slide>
         </Col>
         <Col lg={11} md={11} sm={11} xs={24}>

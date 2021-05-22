@@ -12,6 +12,7 @@ const AssetBlock = ({
   title,
   content,
   button,
+  button2,
   t,
   id,
   owner,
@@ -50,9 +51,23 @@ const AssetBlock = ({
                 <p>Please contact the owner if you wish to use this asset.</p>
               </S.Content>
               {button ? (
-                <Button name="submit" onClick={button}>
-                  Delete Listing
-                </Button>
+                <>
+                  <Button
+                    style={{ margin: "5px" }}
+                    name="edit"
+                    onClick={button2}
+                  >
+                    Edit Listing
+                  </Button>
+
+                  <Button
+                    style={{ margin: "5px" }}
+                    name="delete"
+                    onClick={button}
+                  >
+                    Delete Listing
+                  </Button>
+                </>
               ) : (
                 ""
               )}
