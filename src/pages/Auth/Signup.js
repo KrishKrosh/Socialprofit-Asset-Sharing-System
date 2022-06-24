@@ -147,7 +147,7 @@ export default function Signup() {
                 </Form.Check>
               </Form.Group>
               <Button
-                style={{ backgroundColor: "#2e186a", border: "none" }}
+                style={{ backgroundColor: " #00A79D", border: "none" }}
                 disabled={loading}
                 className="w-100"
                 type="submit"

@@ -43,7 +43,7 @@ export default function ForgotPassword() {
                 <Form.Control type="email" ref={emailRef} required />
               </Form.Group>
               <Button
-                style={{ backgroundColor: "#2e186a", border: "none" }}
+                style={{ backgroundColor: " #00A79D", border: "none" }}
                 disabled={loading}
                 className="w-100"
                 type="submit"

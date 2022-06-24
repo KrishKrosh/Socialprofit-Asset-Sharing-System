@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: inline-block;
@@ -20,6 +20,6 @@ export const Input = styled.input`
 
   &:focus,
   &:hover {
-    border-color: #2e186a;
+    border-color: #00a79d;
   }
 `;

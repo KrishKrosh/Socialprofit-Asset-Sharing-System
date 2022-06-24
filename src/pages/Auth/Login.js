@@ -47,7 +47,7 @@ export default function Login() {
                 <Form.Control type="password" ref={passwordRef} required />
               </Form.Group>
               <Button
-                style={{ backgroundColor: "#2e186a", border: "none" }}
+                style={{ backgroundColor: " #00A79D", border: "none" }}
                 disabled={loading}
                 className="w-100"
                 type="submit"
@@ -62,7 +62,7 @@ export default function Login() {
         </Card>
         <div className="w-100 text-center mt-2">
           Need an account?{" "}
-          <Link to="/signup" style={{ color: "#2e186a" }}>
+          <Link to="/signup" style={{ color: " #00A79D" }}>
             Sign Up
           </Link>
         </div>
